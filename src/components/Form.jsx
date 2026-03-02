@@ -58,34 +58,57 @@ const Form = ({label}) => {
     });
   };
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-200">
-      
-      <form onSubmit={handleSubmit} className="py-10 px-4 w-md bg-white rounded-lg shadow-lg">
-        <div className="text-center pb-2 mb-4 font-bold text-xl border-b-2">{label === "Login"? "User Login" : "User SignUp"}</div>
-        <Formfield
-          label="Username :"
-          name="username"
-          type="text"
-          value={formData.username}
-          onChange={handleChange}
-          error={error.username}
-        />
-        <Formfield
-          label="Email :"
-          name="email"
-          type="text"
-          value={formData.email}
-          onChange={handleChange}
-          error={error.email}
-        />
-        <button className="w-full py-2 bg-black text-white mt-5 font-bold">Submit</button>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 px-4">
 
-        {label === "Login" && <p className="text-center mt-2 text-sm">Haven't account  
-          <button
-          onClick={() => navigate("/signup")}
-         className="font-medium text-blue-700 hover:text-blue-950 hover:underline hover:cursor-pointer">SignUp</button></p>}
-      </form>
+  <form
+    onSubmit={handleSubmit}
+    className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8"
+  >
+    <h2 className="text-2xl font-semibold text-gray-800 text-center pb-4 border-b border-gray-200">
+      {label === "Login" ? "Welcome Back" : "Create Account"}
+    </h2>
+
+    <div className="mt-6 space-y-4">
+      <Formfield
+        label="Username"
+        name="username"
+        type="text"
+        value={formData.username}
+        onChange={handleChange}
+        error={error.username}
+      />
+
+      <Formfield
+        label="Email"
+        name="email"
+        type="text"
+        value={formData.email}
+        onChange={handleChange}
+        error={error.email}
+      />
     </div>
+
+    <button
+      type="submit"
+      className="w-full mt-6 py-2.5 rounded-xl bg-gray-900 text-white text-sm font-medium hover:bg-gray-700 transition"
+    >
+      {label === "Login" ? "Login" : "Sign Up"}
+    </button>
+
+    {label === "Login" && (
+      <p className="text-center mt-5 text-sm text-gray-600">
+        Don’t have an account?{" "}
+        <button
+          type="button"
+          onClick={() => navigate("/signup")}
+          className="text-green-600 font-medium hover:underline"
+        >
+          Sign Up
+        </button>
+      </p>
+    )}
+  </form>
+</div>
   );
 };
 

@@ -50,58 +50,104 @@ function ProjectList() {
   // console.log(selectProject)
   return (
     <div className="m-5">
-      <div className="m-8 flex justify-between items-center">
+      <div className="m-8 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+
         <input
           type="text"
           value={titlesearch}
           onChange={(e) => setTitlesearch(e.target.value)}
-          placeholder="Search projects"
-          className="px-3 py-2 bg-gray-300 rounded-md"
+          placeholder="Search projects..."
+          className="w-full sm:w-80 px-4 py-2.5 text-sm 
+               bg-white border border-gray-200 rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+               transition"
         />
 
         <select
-          className="px-3 py-2 bg-gray-300 rounded-md font-medium"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
+          className="w-full sm:w-48 px-4 py-2.5 text-sm
+               bg-white border border-gray-200 rounded-xl
+               focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+               transition"
         >
-          <option value="">All</option>
+          <option value="">All Status</option>
           <option value="active">Active</option>
           <option value="complete">Completed</option>
           <option value="onhold">On-hold</option>
         </select>
+
       </div>
-      <div className="m-8 rounded-lg  shadow-2xl">
-        <table className="w-full">
-          <thead>
-            <tr className="bg-gray-900 text-white font-medium ">
-              <th className="px-4 py-3 text-left">#</th>
-              <th className="px-4 py-3 text-left">Title</th>
-              <th className="px-4 py-3 text-left">Status</th>
-              <th className="px-4 py-3 text-left">Due Date</th>
-              <th className="px-4 py-3 text-left"></th>
+      <div className="m-8 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <table className="w-full text-sm text-gray-700">
+          <thead className="bg-gray-50 text-gray-600 uppercase text-xs tracking-wider">
+            <tr>
+              <th className="px-6 py-4 text-left">#</th>
+              <th className="px-6 py-4 text-left">Title</th>
+              <th className="px-6 py-4 text-left">Status</th>
+              <th className="px-6 py-4 text-left">Due Date</th>
+              <th className="px-6 py-4 text-left">Actions</th>
             </tr>
           </thead>
-          <tbody>
+
+          <tbody className="divide-y divide-gray-100">
             {filteredProjects.map((p, i) => (
               <tr
                 key={p.projectId}
-                className="border-t bg-gray-50 hover:bg-gray-200 text-md font-medium"
+                className="hover:bg-gray-50 transition-colors duration-200"
               >
-                <td className="px-4 py-3">{i + 1}</td>
-                <td className="px-4 py-3">{p.title}</td>
-                <td className="px-4 py-3 ">
-                  <span className="text-sm text-blue-900 bg-blue-100 font-mono rounded-2xl px-2">
+                <td className="px-6 py-4 font-medium text-gray-500">
+                  {i + 1}
+                </td>
+
+                <td className="px-6 py-4 font-semibold text-gray-800">
+                  {p.title}
+                </td>
+
+                <td className="px-6 py-4">
+                  <span className="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700">
                     {p.status}
                   </span>
                 </td>
-                <td className="px-4 py-3">{p.date}</td>
-                <td className="flex gap-2 justify-start items-center">
-                  <button onClick={() => navigate(`/projects/${p.projectId}`)} className="text-sm px-2 py-1 my-2 bg-green-500 text-white rounded-lg hover:cursor-pointer hover:bg-green-400">View</button>
-                  <button onClick={() => handleDelete(p.projectId)} className="text-sm px-2 py-1 my-2 bg-red-500 text-white rounded-lg hover:cursor-pointer hover:bg-red-400">Delete</button>
-                  <button onClick={() => handleUpdate(p)} className="text-sm px-2 py-1 my-2 bg-orange-500 text-white rounded-lg hover:cursor-pointer hover:bg-orange-400">Edit</button>
+
+                <td className="px-6 py-4 text-gray-500">
+                  {p.date}
+                </td>
+
+                <td className="px-6 py-4 flex gap-2">
+                  <button
+                    onClick={() => navigate(`/projects/${p.projectId}`)}
+                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 transition"
+                  >
+                    View
+                  </button>
+
+                  <button
+                    onClick={() => handleUpdate(p)}
+                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(p.projectId)}
+                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
+            {filteredProjects.length === 0 && (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="px-6 py-10 text-center text-gray-500 text-sm"
+                >
+                  No projects found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

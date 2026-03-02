@@ -58,46 +58,72 @@ const ProjectForm = ({ onClose, editproject}) => {
   };
 
   return (
-    <div className="py-5 flex justify-center items-center">
-      <form onSubmit={handleSubmit} className="w-md">
+    <div className="flex justify-center px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-sm border border-gray-200 space-y-5"
+      >
+        <h2 className="text-lg font-semibold text-gray-800 border-b pb-4">
+          Create Project
+        </h2>
+
         <Formfield
-          label="Project title"
+          label="Project Title"
           name="title"
           type="text"
           value={formData.title}
           onChange={handleChange}
           error={error.title}
         />
-        <label className="font-semibold">
-          Description
+
+        {/* Description */}
+        <div className="space-y-1">
+          <label className="block text-sm font-medium text-gray-700">
+            Description
+          </label>
+
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="resize-none block bg-gray-100 w-full px-2 py-2 rounded-md mb-3"
+            rows="4"
+            className="w-full px-3 py-2 text-sm
+                   bg-white border border-gray-300 rounded-xl
+                   resize-none
+                   focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+                   transition"
           />
-          <p className="text-sm text-red-700 font-normal">
-            {error.description}
-          </p>
-        </label>
+
+          {error.description && (
+            <p className="text-xs text-red-500">
+              {error.description}
+            </p>
+          )}
+        </div>
+
         <Formfield
           label="Due Date"
           name="date"
           type="date"
-          error={error.date}
           value={formData.date}
           onChange={handleChange}
+          error={error.date}
         />
-        <div className="mb-3 flex items-center gap-3">
-          <label htmlFor="status" className="font-medium">
-            {" "}
-            Project Status :{" "}
+
+        {/* Status */}
+        <div className="space-y-1">
+          <label className="block text-sm font-medium text-gray-700">
+            Project Status
           </label>
+
           <select
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="px-2 bg-gray-100"
+            className="w-full px-3 py-2 text-sm
+                   bg-white border border-gray-300 rounded-xl
+                   focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500
+                   transition"
           >
             <option value="active">Active</option>
             <option value="complete">Complete</option>
@@ -105,7 +131,11 @@ const ProjectForm = ({ onClose, editproject}) => {
           </select>
         </div>
 
-        <button className="w-full bg-green-800 py-2 mt-3 text-white font-bold hover:bg-green-700 hover:cursor-pointer">
+        <button
+          type="submit"
+          className="w-full py-2.5 rounded-xl bg-green-600 text-white text-sm font-medium
+                 hover:bg-green-700 transition"
+        >
           Submit
         </button>
       </form>
