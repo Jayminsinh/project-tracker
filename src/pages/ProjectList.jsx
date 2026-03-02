@@ -144,7 +144,7 @@ function ProjectList() {
                   colSpan="5"
                   className="px-6 py-10 text-center text-gray-500 text-sm"
                 >
-                  No projects found.
+                  No projects found!!
                 </td>
               </tr>
             )}
