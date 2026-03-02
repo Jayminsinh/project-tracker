@@ -5,9 +5,12 @@ import ProtectedRoutes from "../routes/ProtectedRoutes";
 
 function Layout() {
   return (
-    <div className='max-h-screen'>
-      <Header/>
-      <Outlet />
+    <div className="min-h-screen flex flex-col">
+      <Header />
+
+      <div className="flex-1 bg-gray-100 overflow-auto p-6">
+        <Outlet />
+      </div>
     </div>
   )
 }

@@ -29,31 +29,42 @@ function Dashboard() {
     setOpen(false)
   }
   const handleStatus = (status) => {
-      navigate(`/projects?status=${status}`)
+    navigate(`/projects?status=${status}`)
   }
   return (
     <div className='p-6 space-y-5 '>
       <h1 className='text-center text-2xl font-bold'>Welcome, <span className='text-blue-600'>{user.username}</span></h1>
       <div className='grid grid-cols-4 gap-5'>
-        <div onClick={() => handleStatus("active")} className='rounded-lg py-2 px-2 bg-gray-100 shadow-2xl hover:border-2 hover:border-blue-600 transition'>
+        <div onClick={() => handleStatus("active")} className='rounded-2xl p-5 bg-white border border-gray-200 
+shadow-sm hover:shadow-xl 
+hover:-translate-y-1 hover:border-blue-500 
+transition-all duration-300 ease-out'>
           <p className='text-sm text-gray-700'>Active Projects:</p>
           <div className='text-2xl font-semibold'>{active.length}</div>
         </div>
-        <div onClick={() => handleStatus("complete")} className='rounded-lg py-2 px-2 bg-gray-100 shadow-2xl hover:border-2 hover:border-orange-600 transition'>
+        <div onClick={() => handleStatus("complete")} className='rounded-2xl p-4 bg-white border border-gray-200  shadow-sm hover:shadow-xl 
+hover:-translate-y-1 hover:border hover:border-orange-500 
+transition-all duration-300 ease-in-out'>
           <p className='text-sm text-gray-700'>Completed Projects:</p>
           <div className='text-2xl font-semibold'>{complete.length}</div>
         </div>
-        <div onClick={() => handleStatus("onhold")} className='rounded-lg py-2 px-2 bg-gray-100 shadow-2xl hover:border-2 hover:border-green-600  transition'>
+        <div onClick={() => handleStatus("onhold")} className='rounded-2xl p-4 bg-white shadow-sm border border-gray-200  hover:shadow-xl 
+hover:-translate-y-1 hover:border hover:border-green-500 
+transition-all duration-300 ease-in-out'>
           <p className='text-sm text-gray-700'>On hold Projects:</p>
           <div className='text-2xl font-semibold'>{onhold.length}</div>
         </div>
-        <div className='rounded-lg py-2 px-2 bg-gray-100 shadow-2xl hover:border-2 hover:border-red-600  transition'>
+        <div className='rounded-2xl p-4 bg-white shadow-sm border border-gray-200  hover:shadow-xl 
+hover:-translate-y-1 hover:border hover:border-red-500 
+transition-all duration-300 ease-in-out'>
           <p className='text-sm text-gray-700'>Over-Due Projects:</p>
           <div className='text-2xl font-semibold'>{overDue.length}</div>
         </div>
       </div>
       <div className='flex justify-end p-5'>
-        <button onClick={handleClick} className='px-3 py-2 bg-blue-800 text-white font-medium rounded-md hover:bg-blue-600 hover:cursor-pointer'>+ Create new Project</button>
+        <button onClick={handleClick}
+          className='px-3 py-2 bg-blue-800 text-white font-medium rounded-md hover:-translate-y-1 hover:shadow-md transition-all duration-200 ease-in-out hover:bg-blue-600 hover:cursor-pointer'>
+          + Create new Project</button>
       </div>
       <Modal isOpen={open} onClose={handleClose}>
         <ProjectForm onClose={handleClose} />
