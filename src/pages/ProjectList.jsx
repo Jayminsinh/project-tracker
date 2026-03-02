@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Formfield from "../components/Formfield";
+
 import useDebounce from "../hooks/useDebounce";
 import { useLocation, useNavigate } from "react-router-dom";
 import { deleteProject } from "../store/projectsSlice";
@@ -114,27 +114,29 @@ function ProjectList() {
                   {p.date}
                 </td>
 
-                <td className="px-6 py-4 flex gap-2">
-                  <button
-                    onClick={() => navigate(`/projects/${p.projectId}`)}
-                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 transition"
-                  >
-                    View
-                  </button>
+                <td className="px-6 py-4">
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => navigate(`/projects/${p.projectId}`)}
+                      className="px-3 py-1.5 text-xs font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 transition"
+                    >
+                      View
+                    </button>
 
-                  <button
-                    onClick={() => handleUpdate(p)}
-                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition"
-                  >
-                    Edit
-                  </button>
+                    <button
+                      onClick={() => handleUpdate(p)}
+                      className="px-3 py-1.5 text-xs font-medium rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition"
+                    >
+                      Edit
+                    </button>
 
-                  <button
-                    onClick={() => handleDelete(p.projectId)}
-                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
-                  >
-                    Delete
-                  </button>
+                    <button
+                      onClick={() => handleDelete(p.projectId)}
+                      className="px-3 py-1.5 text-xs font-medium rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -144,7 +146,7 @@ function ProjectList() {
                   colSpan="5"
                   className="px-6 py-10 text-center text-gray-500 text-sm"
                 >
-                  No projects found!!👎
+                  No projects found!!
                 </td>
               </tr>
             )}
