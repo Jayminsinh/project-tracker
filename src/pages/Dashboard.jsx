@@ -32,44 +32,110 @@ function Dashboard() {
     navigate(`/projects?status=${status}`)
   }
   return (
-    <div className='p-6 space-y-5 '>
-      <h1 className='text-center text-2xl font-bold'>Welcome, <span className='text-blue-600'>{user.username}</span></h1>
-      <div className='grid grid-cols-4 gap-5'>
-        <div onClick={() => handleStatus("active")} className='rounded-2xl p-5 bg-white border border-gray-200 
-shadow-sm hover:shadow-xl 
-hover:-translate-y-1 hover:border-blue-500 
-transition-all duration-300 ease-out'>
-          <p className='text-sm text-gray-700'>Active Projects:</p>
-          <div className='text-2xl font-semibold'>{active.length}</div>
+    <div className="p-8 space-y-8">
+
+  {/* Welcome Section */}
+  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <h1 className="text-2xl font-semibold text-gray-800">
+      Welcome back,{" "}
+      <span className="text-blue-600 font-bold">
+        {user.username}
+      </span>
+      👋
+    </h1>
+
+    <button
+      onClick={handleClick}
+      className="px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-xl
+                 hover:bg-blue-700 hover:-translate-y-0.5 hover:shadow-lg
+                 transition-all duration-200"
+    >
+      + Create New Project
+    </button>
+  </div>
+
+  {/* Stats Cards */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+    {/* Active */}
+    <div
+      onClick={() => handleStatus("active")}
+      className="group cursor-pointer rounded-2xl p-6 bg-white border border-gray-200
+                 shadow-sm hover:shadow-xl hover:-translate-y-1
+                 transition-all duration-300"
+    >
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-gray-500">Active Projects</p>
+          <p className="text-3xl font-bold text-blue-600 mt-2">
+            {active.length}
+          </p>
         </div>
-        <div onClick={() => handleStatus("complete")} className='rounded-2xl p-4 bg-white border border-gray-200  shadow-sm hover:shadow-xl 
-hover:-translate-y-1 hover:border hover:border-orange-500 
-transition-all duration-300 ease-in-out'>
-          <p className='text-sm text-gray-700'>Completed Projects:</p>
-          <div className='text-2xl font-semibold'>{complete.length}</div>
-        </div>
-        <div onClick={() => handleStatus("onhold")} className='rounded-2xl p-4 bg-white shadow-sm border border-gray-200  hover:shadow-xl 
-hover:-translate-y-1 hover:border hover:border-green-500 
-transition-all duration-300 ease-in-out'>
-          <p className='text-sm text-gray-700'>On hold Projects:</p>
-          <div className='text-2xl font-semibold'>{onhold.length}</div>
-        </div>
-        <div className='rounded-2xl p-4 bg-white shadow-sm border border-gray-200  hover:shadow-xl 
-hover:-translate-y-1 hover:border hover:border-red-500 
-transition-all duration-300 ease-in-out'>
-          <p className='text-sm text-gray-700'>Over-Due Projects:</p>
-          <div className='text-2xl font-semibold'>{overDue.length}</div>
-        </div>
+        <div className="text-3xl">🚀</div>
       </div>
-      <div className='flex justify-end p-5'>
-        <button onClick={handleClick}
-          className='px-3 py-2 bg-blue-800 text-white font-medium rounded-md hover:-translate-y-1 hover:shadow-md transition-all duration-200 ease-in-out hover:bg-blue-600 hover:cursor-pointer'>
-          + Create new Project</button>
-      </div>
-      <Modal isOpen={open} onClose={handleClose}>
-        <ProjectForm onClose={handleClose} />
-      </Modal>
     </div>
+
+    {/* Completed */}
+    <div
+      onClick={() => handleStatus("complete")}
+      className="group cursor-pointer rounded-2xl p-6 bg-white border border-gray-200
+                 shadow-sm hover:shadow-xl hover:-translate-y-1
+                 transition-all duration-300"
+    >
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-gray-500">Completed Projects</p>
+          <p className="text-3xl font-bold text-green-600 mt-2">
+            {complete.length}
+          </p>
+        </div>
+        <div className="text-3xl">✅</div>
+      </div>
+    </div>
+
+    {/* On Hold */}
+    <div
+      onClick={() => handleStatus("onhold")}
+      className="group cursor-pointer rounded-2xl p-6 bg-white border border-gray-200
+                 shadow-sm hover:shadow-xl hover:-translate-y-1
+                 transition-all duration-300"
+    >
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-gray-500">On Hold</p>
+          <p className="text-3xl font-bold text-amber-500 mt-2">
+            {onhold.length}
+          </p>
+        </div>
+        <div className="text-3xl">⏸️</div>
+      </div>
+    </div>
+
+    {/* Overdue */}
+    <div
+      className="rounded-2xl p-6 bg-white border border-gray-200
+                 shadow-sm hover:shadow-xl hover:-translate-y-1
+                 transition-all duration-300"
+    >
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-gray-500">Overdue Projects</p>
+          <p className="text-3xl font-bold text-red-500 mt-2">
+            {overDue.length}
+          </p>
+        </div>
+        <div className="text-3xl">⚠️</div>
+      </div>
+    </div>
+
+  </div>
+
+  {/* Modal */}
+  <Modal isOpen={open} onClose={handleClose}>
+    <ProjectForm onClose={handleClose} />
+  </Modal>
+
+</div>
   )
 }
 
