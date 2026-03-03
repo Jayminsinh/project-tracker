@@ -48,7 +48,7 @@ function Dashboard() {
       onClick={handleClick}
       className="px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-xl
                  hover:bg-blue-700 hover:-translate-y-0.5 hover:shadow-lg
-                 transition-all duration-200"
+                 transition-all duration-200 hover:scale-110 hover:border"
     >
       + Create New Project
     </button>
@@ -62,7 +62,7 @@ function Dashboard() {
       onClick={() => handleStatus("active")}
       className="group cursor-pointer rounded-2xl p-6 bg-white border border-gray-200
                  shadow-sm hover:shadow-xl hover:-translate-y-1
-                 transition-all duration-300"
+                 transition-all duration-300 hover:scale-110 hover:border hover:border-blue-700"
     >
       <div className="flex items-center justify-between">
         <div>
@@ -80,7 +80,7 @@ function Dashboard() {
       onClick={() => handleStatus("complete")}
       className="group cursor-pointer rounded-2xl p-6 bg-white border border-gray-200
                  shadow-sm hover:shadow-xl hover:-translate-y-1
-                 transition-all duration-300"
+                 transition-all duration-300 hover:scale-110 hover:border hover:border-green-700"
     >
       <div className="flex items-center justify-between">
         <div>
@@ -98,7 +98,7 @@ function Dashboard() {
       onClick={() => handleStatus("onhold")}
       className="group cursor-pointer rounded-2xl p-6 bg-white border border-gray-200
                  shadow-sm hover:shadow-xl hover:-translate-y-1
-                 transition-all duration-300"
+                 transition-all duration-300 hover:scale-110 hover:border hover:border-amber-500"
     >
       <div className="flex items-center justify-between">
         <div>
@@ -115,7 +115,7 @@ function Dashboard() {
     <div
       className="rounded-2xl p-6 bg-white border border-gray-200
                  shadow-sm hover:shadow-xl hover:-translate-y-1
-                 transition-all duration-300"
+                 transition-all duration-300 hover:scale-110 hover:border hover:border-red-600"
     >
       <div className="flex items-center justify-between">
         <div>
